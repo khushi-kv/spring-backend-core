@@ -1,10 +1,23 @@
 package com.example.basics.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 /**
- * A simple Core Java POJO (Plain Old Java Object) representing a Student model.
+ * @Entity tells JPA/Hibernate that this class maps to a database table.
+ * @Table specifies the table name in the H2 database ("students").
  */
+@Entity
+@Table(name = "students")
 public class Student {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String course;
 

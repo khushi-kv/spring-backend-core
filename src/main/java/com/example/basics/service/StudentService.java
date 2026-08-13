@@ -33,7 +33,7 @@ public class StudentService {
     }
 
     public Student getStudentById(Long id) {
-        return studentRepository.findById(id);
+        return studentRepository.findById(id).orElse(null);
     }
 
     public Student addStudent(Student student) {
