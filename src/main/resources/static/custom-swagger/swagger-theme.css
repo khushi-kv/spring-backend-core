@@ -1,0 +1,93 @@
+/* ===================================================================
+   SWAGGER UI AUTOMATIC & MANUAL PITCH BLACK THEME
+   =================================================================== */
+
+/* Floating Toggle Button */
+#theme-toggle-btn {
+    position: fixed !important;
+    top: 12px !important;
+    right: 20px !important;
+    z-index: 999999 !important;
+    padding: 8px 16px !important;
+    border-radius: 20px !important;
+    border: 2px solid #38bdf8 !important;
+    background: #000000 !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.6) !important;
+    transition: all 0.2s ease-in-out !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 13px !important;
+    font-family: inherit !important;
+}
+
+#theme-toggle-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.8) !important;
+    border-color: #60a5fa !important;
+}
+
+/* ===================================================================
+   DARK STYLES (Applies for System Dark Mode AND body.dark-mode)
+   =================================================================== */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000000 !important;
+        color: #e2e8f0 !important;
+    }
+    .swagger-ui { color: #e2e8f0 !important; }
+    .swagger-ui .topbar { background-color: #05070f !important; border-bottom: 1px solid #1e293b !important; }
+    .swagger-ui .topbar a span { color: #38bdf8 !important; }
+    .swagger-ui .info .title { color: #ffffff !important; }
+    .swagger-ui .info p, .swagger-ui .info a, .swagger-ui .info li { color: #94a3b8 !important; }
+    .swagger-ui .info a { color: #38bdf8 !important; }
+    .swagger-ui .scheme-container { background-color: #0a0e17 !important; border: 1px solid #1e293b !important; border-radius: 8px !important; }
+    .swagger-ui .schemes-title, .swagger-ui .loading-container .loading:after { color: #ffffff !important; }
+    .swagger-ui .opblock-tag { color: #ffffff !important; border-bottom: 1px solid #1e293b !important; }
+    .swagger-ui .opblock-tag small { color: #94a3b8 !important; }
+    .swagger-ui .opblock { background-color: #0a0e17 !important; border-radius: 8px !important; border-color: #1e293b !important; }
+    .swagger-ui .opblock .opblock-summary { border-color: #1e293b !important; }
+    .swagger-ui .opblock .opblock-summary-description { color: #cbd5e1 !important; }
+    .swagger-ui .opblock .opblock-summary-path { color: #ffffff !important; }
+    .swagger-ui .opblock-body pre.microlight { background-color: #000000 !important; border: 1px solid #1e293b !important; }
+    .swagger-ui .opblock-description-wrapper p, .swagger-ui .opblock-title_normal { color: #cbd5e1 !important; }
+    .swagger-ui table thead tr th, .swagger-ui table thead tr td, .swagger-ui .parameter__name, .swagger-ui .parameter__type, .swagger-ui .response-col_status, .swagger-ui .response-col_description { color: #e2e8f0 !important; }
+    .swagger-ui input[type=text], .swagger-ui textarea, .swagger-ui select { background-color: #000000 !important; color: #ffffff !important; border: 1px solid #334155 !important; }
+    .swagger-ui section.models { background-color: #0a0e17 !important; border: 1px solid #1e293b !important; }
+    .swagger-ui section.models h4 { color: #ffffff !important; border-bottom: 1px solid #1e293b !important; }
+    .swagger-ui section.models .model-container { background-color: #000000 !important; }
+    .swagger-ui .model-title, .swagger-ui .model { color: #cbd5e1 !important; }
+}
+
+/* Explicit class override for manual toggle */
+body.dark-mode {
+    background-color: #000000 !important;
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .swagger-ui { color: #e2e8f0 !important; }
+body.dark-mode .swagger-ui .topbar { background-color: #05070f !important; border-bottom: 1px solid #1e293b !important; }
+body.dark-mode .swagger-ui .topbar a span { color: #38bdf8 !important; }
+body.dark-mode .swagger-ui .info .title { color: #ffffff !important; }
+body.dark-mode .swagger-ui .info p, body.dark-mode .swagger-ui .info a, body.dark-mode .swagger-ui .info li { color: #94a3b8 !important; }
+body.dark-mode .swagger-ui .info a { color: #38bdf8 !important; }
+body.dark-mode .swagger-ui .scheme-container { background-color: #0a0e17 !important; border: 1px solid #1e293b !important; border-radius: 8px !important; }
+body.dark-mode .swagger-ui .schemes-title, body.dark-mode .swagger-ui .loading-container .loading:after { color: #ffffff !important; }
+body.dark-mode .swagger-ui .opblock-tag { color: #ffffff !important; border-bottom: 1px solid #1e293b !important; }
+body.dark-mode .swagger-ui .opblock-tag small { color: #94a3b8 !important; }
+body.dark-mode .swagger-ui .opblock { background-color: #0a0e17 !important; border-radius: 8px !important; border-color: #1e293b !important; }
+body.dark-mode .swagger-ui .opblock .opblock-summary { border-color: #1e293b !important; }
+body.dark-mode .swagger-ui .opblock .opblock-summary-description { color: #cbd5e1 !important; }
+body.dark-mode .swagger-ui .opblock .opblock-summary-path { color: #ffffff !important; }
+body.dark-mode .swagger-ui .opblock-body pre.microlight { background-color: #000000 !important; border: 1px solid #1e293b !important; }
+body.dark-mode .swagger-ui .opblock-description-wrapper p, body.dark-mode .swagger-ui .opblock-title_normal { color: #cbd5e1 !important; }
+body.dark-mode .swagger-ui table thead tr th, body.dark-mode .swagger-ui table thead tr td, body.dark-mode .swagger-ui .parameter__name, body.dark-mode .swagger-ui .parameter__type, body.dark-mode .swagger-ui .response-col_status, body.dark-mode .swagger-ui .response-col_description { color: #e2e8f0 !important; }
+body.dark-mode .swagger-ui input[type=text], body.dark-mode .swagger-ui textarea, body.dark-mode .swagger-ui select { background-color: #000000 !important; color: #ffffff !important; border: 1px solid #334155 !important; }
+body.dark-mode .swagger-ui section.models { background-color: #0a0e17 !important; border: 1px solid #1e293b !important; }
+body.dark-mode .swagger-ui section.models h4 { color: #ffffff !important; border-bottom: 1px solid #1e293b !important; }
+body.dark-mode .swagger-ui section.models .model-container { background-color: #000000 !important; }
+body.dark-mode .swagger-ui .model-title, body.dark-mode .swagger-ui .model { color: #cbd5e1 !important; }
+

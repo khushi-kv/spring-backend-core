@@ -1,0 +1,173 @@
+/* ===================================================================
+   SWAGGER UI PITCH BLACK (OLED) DARK THEME
+   =================================================================== */
+body {
+    background-color: #000000 !important;
+    color: #e2e8f0 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+.swagger-ui {
+    color: #e2e8f0 !important;
+}
+
+/* Top bar */
+.swagger-ui .topbar {
+    background-color: #05070f !important;
+    border-bottom: 1px solid #1e293b !important;
+    padding: 12px 0 !important;
+}
+
+.swagger-ui .topbar a span {
+    color: #38bdf8 !important;
+    font-weight: bold;
+}
+
+/* Info Section */
+.swagger-ui .info .title {
+    color: #ffffff !important;
+}
+
+.swagger-ui .info p, 
+.swagger-ui .info a,
+.swagger-ui .info li {
+    color: #94a3b8 !important;
+}
+
+.swagger-ui .info a {
+    color: #38bdf8 !important;
+}
+
+/* Scheme Container (Servers & Authorize) */
+.swagger-ui .scheme-container {
+    background-color: #0a0e17 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid #1e293b !important;
+    border-radius: 8px !important;
+    padding: 15px !important;
+}
+
+.swagger-ui .schemes-title,
+.swagger-ui .loading-container .loading:after {
+    color: #ffffff !important;
+}
+
+/* Section Tags */
+.swagger-ui .opblock-tag {
+    color: #ffffff !important;
+    border-bottom: 1px solid #1e293b !important;
+}
+
+.swagger-ui .opblock-tag small {
+    color: #94a3b8 !important;
+}
+
+/* API Operation Blocks */
+.swagger-ui .opblock {
+    background-color: #0a0e17 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+    border-color: #1e293b !important;
+    margin-bottom: 12px !important;
+}
+
+.swagger-ui .opblock .opblock-summary {
+    border-color: #1e293b !important;
+}
+
+.swagger-ui .opblock .opblock-summary-description {
+    color: #cbd5e1 !important;
+}
+
+.swagger-ui .opblock .opblock-summary-path {
+    color: #ffffff !important;
+}
+
+/* Body / Details of expanded blocks */
+.swagger-ui .opblock-body pre.microlight {
+    background-color: #000000 !important;
+    border-radius: 6px !important;
+    border: 1px solid #1e293b !important;
+}
+
+.swagger-ui .opblock-description-wrapper p,
+.swagger-ui .opblock-title_normal {
+    color: #cbd5e1 !important;
+}
+
+/* Tables & Headers */
+.swagger-ui table thead tr th, 
+.swagger-ui table thead tr td,
+.swagger-ui .parameter__name,
+.swagger-ui .parameter__type,
+.swagger-ui .parameter__extension,
+.swagger-ui .parameter__in,
+.swagger-ui .response-col_status,
+.swagger-ui .response-col_description {
+    color: #e2e8f0 !important;
+}
+
+/* Input Fields & Textareas */
+.swagger-ui input[type=text], 
+.swagger-ui textarea, 
+.swagger-ui select {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #334155 !important;
+    border-radius: 6px !important;
+    padding: 6px 10px !important;
+}
+
+.swagger-ui input[type=text]:focus, 
+.swagger-ui textarea:focus, 
+.swagger-ui select:focus {
+    border-color: #38bdf8 !important;
+    outline: none !important;
+}
+
+/* Buttons */
+.swagger-ui .btn {
+    border-radius: 6px !important;
+    color: #ffffff !important;
+    border-color: #334155 !important;
+    background-color: #1e293b !important;
+}
+
+.swagger-ui .btn.execute {
+    background-color: #0284c7 !important;
+    border-color: #0284c7 !important;
+}
+
+.swagger-ui .btn.authorize {
+    color: #38bdf8 !important;
+    border-color: #38bdf8 !important;
+    background-color: transparent !important;
+}
+
+/* Models Section */
+.swagger-ui section.models {
+    background-color: #0a0e17 !important;
+    border: 1px solid #1e293b !important;
+    border-radius: 8px !important;
+}
+
+.swagger-ui section.models h4 {
+    color: #ffffff !important;
+    border-bottom: 1px solid #1e293b !important;
+}
+
+.swagger-ui section.models .model-container {
+    background-color: #000000 !important;
+    margin: 8px 0 !important;
+    border-radius: 6px !important;
+}
+
+.swagger-ui .model-title, 
+.swagger-ui .model {
+    color: #cbd5e1 !important;
+}
+
+.swagger-ui .prop-type {
+    color: #38bdf8 !important;
+}
+

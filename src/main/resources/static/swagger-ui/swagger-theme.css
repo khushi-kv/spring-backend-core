@@ -1,0 +1,169 @@
+/* ===================================================================
+   SWAGGER UI LIGHT & DARK THEME SWITCHER (PITCH BLACK OLED)
+   =================================================================== */
+
+/* Theme Toggle Floating Button */
+#theme-toggle-btn {
+    position: fixed;
+    top: 12px;
+    right: 20px;
+    z-index: 99999;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #94a3b8;
+    background: #ffffff;
+    color: #0f172a;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-family: inherit;
+}
+
+#theme-toggle-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    border-color: #2563eb;
+}
+
+/* ===================================================================
+   DARK MODE STYLES (Active when <body> has class 'dark-mode')
+   =================================================================== */
+body.dark-mode {
+    background-color: #000000 !important;
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode #theme-toggle-btn {
+    background: #000000;
+    color: #ffffff;
+    border-color: #38bdf8;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+
+body.dark-mode #theme-toggle-btn:hover {
+    border-color: #60a5fa;
+}
+
+body.dark-mode .swagger-ui {
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .swagger-ui .topbar {
+    background-color: #05070f !important;
+    border-bottom: 1px solid #1e293b !important;
+}
+
+body.dark-mode .swagger-ui .topbar a span {
+    color: #38bdf8 !important;
+}
+
+body.dark-mode .swagger-ui .info .title {
+    color: #ffffff !important;
+}
+
+body.dark-mode .swagger-ui .info p, 
+body.dark-mode .swagger-ui .info a,
+body.dark-mode .swagger-ui .info li {
+    color: #94a3b8 !important;
+}
+
+body.dark-mode .swagger-ui .info a {
+    color: #38bdf8 !important;
+}
+
+body.dark-mode .swagger-ui .scheme-container {
+    background-color: #0a0e17 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid #1e293b !important;
+    border-radius: 8px !important;
+}
+
+body.dark-mode .swagger-ui .schemes-title,
+body.dark-mode .swagger-ui .loading-container .loading:after {
+    color: #ffffff !important;
+}
+
+body.dark-mode .swagger-ui .opblock-tag {
+    color: #ffffff !important;
+    border-bottom: 1px solid #1e293b !important;
+}
+
+body.dark-mode .swagger-ui .opblock-tag small {
+    color: #94a3b8 !important;
+}
+
+body.dark-mode .swagger-ui .opblock {
+    background-color: #0a0e17 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+    border-color: #1e293b !important;
+}
+
+body.dark-mode .swagger-ui .opblock .opblock-summary {
+    border-color: #1e293b !important;
+}
+
+body.dark-mode .swagger-ui .opblock .opblock-summary-description {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode .swagger-ui .opblock .opblock-summary-path {
+    color: #ffffff !important;
+}
+
+body.dark-mode .swagger-ui .opblock-body pre.microlight {
+    background-color: #000000 !important;
+    border-radius: 6px !important;
+    border: 1px solid #1e293b !important;
+}
+
+body.dark-mode .swagger-ui .opblock-description-wrapper p,
+body.dark-mode .swagger-ui .opblock-title_normal {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode .swagger-ui table thead tr th, 
+body.dark-mode .swagger-ui table thead tr td,
+body.dark-mode .swagger-ui .parameter__name,
+body.dark-mode .swagger-ui .parameter__type,
+body.dark-mode .swagger-ui .parameter__extension,
+body.dark-mode .swagger-ui .parameter__in,
+body.dark-mode .swagger-ui .response-col_status,
+body.dark-mode .swagger-ui .response-col_description {
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .swagger-ui input[type=text], 
+body.dark-mode .swagger-ui textarea, 
+body.dark-mode .swagger-ui select {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #334155 !important;
+    border-radius: 6px !important;
+}
+
+body.dark-mode .swagger-ui section.models {
+    background-color: #0a0e17 !important;
+    border: 1px solid #1e293b !important;
+    border-radius: 8px !important;
+}
+
+body.dark-mode .swagger-ui section.models h4 {
+    color: #ffffff !important;
+    border-bottom: 1px solid #1e293b !important;
+}
+
+body.dark-mode .swagger-ui section.models .model-container {
+    background-color: #000000 !important;
+}
+
+body.dark-mode .swagger-ui .model-title, 
+body.dark-mode .swagger-ui .model {
+    color: #cbd5e1 !important;
+}
+
