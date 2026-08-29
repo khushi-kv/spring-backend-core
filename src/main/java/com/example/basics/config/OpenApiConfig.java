@@ -26,7 +26,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * Configuration class for OpenAPI 3 / Swagger UI documentation.
- * Provides interactive API testing interface at /swagger-ui.html with Light/Dark Theme Switcher.
+ * Provides interactive API testing interface at /swagger-ui.html with Bearer JWT & Light/Dark Theme support.
  */
 @Configuration
 public class OpenApiConfig {
@@ -39,7 +39,7 @@ public class OpenApiConfig {
                 .info(new Info()
                         .title("Production-Grade Spring Boot REST API")
                         .description("Production-ready backend API featuring REST Endpoints, PostgreSQL Support, " +
-                                     "Bean Validation, Global Exception Handling, and OpenAPI 3 Swagger UI.")
+                                     "Bean Validation, Spring Security 6 RBAC, Global Exception Handling, and OpenAPI 3 Swagger UI.")
                         .version("v1.0.0")
                         .contact(new Contact()
                                 .name("Khushi - Backend Engineering")
@@ -55,7 +55,7 @@ public class OpenApiConfig {
     }
 
     /**
-     * Injects custom CSS (swagger-theme.css) and JS (theme-toggle.js) directly into Swagger UI HTML head.
+     * Injects custom Pitch Black CSS (swagger-theme.css) and JS (theme-toggle.js) directly into Swagger UI HTML head.
      */
     @Bean
     public SwaggerIndexTransformer swaggerIndexTransformer(
@@ -84,3 +84,5 @@ public class OpenApiConfig {
         };
     }
 }
+
+

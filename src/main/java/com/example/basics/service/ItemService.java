@@ -1,5 +1,11 @@
 package com.example.basics.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.example.basics.dto.ItemRequestDto;
 import com.example.basics.dto.ItemResponseDto;
 import com.example.basics.exception.ResourceNotFoundException;
@@ -7,11 +13,6 @@ import com.example.basics.model.Category;
 import com.example.basics.model.Item;
 import com.example.basics.repository.CategoryRepository;
 import com.example.basics.repository.ItemRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ItemService {
@@ -74,12 +75,10 @@ public class ItemService {
 
         Category category = categoryRepository.findById(dto.getCategoryId())
                 .orElseThrow(() -> new ResourceNotFoundException("Category not found with ID: " + dto.getCategoryId()));
-
         item.setName(dto.getName());
         item.setPrice(dto.getPrice());
         item.setQuantity(dto.getQuantity());
         item.setCategory(category);
-
         Item updatedItem = itemRepository.save(item);
         return mapToResponseDto(updatedItem);
     }
