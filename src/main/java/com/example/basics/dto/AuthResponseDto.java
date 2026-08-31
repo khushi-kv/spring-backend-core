@@ -1,15 +1,23 @@
 package com.example.basics.dto;
 import java.util.Set;
+
+/**
+ * Authentication Response DTO returned after successful login or registration.
+ * Contains the JWT access token, token type, username, and assigned roles.
+ */
 public class AuthResponseDto {
     private String message;
+    private String accessToken;
+    private String tokenType = "Bearer";
     private String username;
     private Set<String> roles;
 
     public AuthResponseDto() {
     }
 
-    public AuthResponseDto(String message, String username, Set<String> roles) {
+    public AuthResponseDto(String message, String accessToken, String username, Set<String> roles) {
         this.message = message;
+        this.accessToken = accessToken;
         this.username = username;
         this.roles = roles;
     }
@@ -20,6 +28,22 @@ public class AuthResponseDto {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public String getTokenType() {
+        return tokenType;
+    }
+
+    public void setTokenType(String tokenType) {
+        this.tokenType = tokenType;
     }
 
     public String getUsername() {
@@ -38,3 +62,4 @@ public class AuthResponseDto {
         this.roles = roles;
     }
 }
+

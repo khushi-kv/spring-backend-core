@@ -6,12 +6,12 @@ import com.example.basics.dto.RegisterRequestDto;
 import com.example.basics.model.Role;
 import com.example.basics.model.User;
 import com.example.basics.repository.UserRepository;
+import com.example.basics.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,18 +20,24 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Authentication Service handling user registration and login.
+ */
 @Service
 public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder,
+                       AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
     @Transactional
@@ -44,21 +50,9 @@ public class AuthService {
         }
 
         Set<Role> roles = new HashSet<>();
-        if (dto.getRoles() == null || dto.getRoles().isEmpty()) {
-            roles.add(Role.ROLE_STAFF);
-        } else {
-            for (String roleStr : dto.getRoles()) {
-                try {
-                    String formattedRole = roleStr.startsWith("ROLE_") ? roleStr.toUpperCase() : "ROLE_" + roleStr.toUpperCase();
-                    roles.add(Role.valueOf(formattedRole));
-                } catch (IllegalArgumentException e) {
-                    roles.add(Role.ROLE_STAFF);
-                }
-            }
-        }
+        roles.add(Role.ROLE_USER);
 
         User user = new User();
-        user.getUsername();
         user.setUsername(dto.getUsername());
         user.setEmail(dto.getEmail());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
@@ -66,8 +60,15 @@ public class AuthService {
 
         userRepository.save(user);
 
+        // Authenticate and generate JWT token so user is immediately logged in
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword())
+        );
+
+        String token = jwtTokenProvider.generateToken(authentication);
+
         Set<String> roleNames = roles.stream().map(Role::name).collect(Collectors.toSet());
-        return new AuthResponseDto("User registered successfully!", user.getUsername(), roleNames);
+        return new AuthResponseDto("User registered successfully!", token, user.getUsername(), roleNames);
     }
 
     public AuthResponseDto login(AuthRequestDto dto) {
@@ -75,12 +76,13 @@ public class AuthService {
                 new UsernamePasswordAuthenticationToken(dto.getUsernameOrEmail(), dto.getPassword())
         );
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String token = jwtTokenProvider.generateToken(authentication);
 
         Set<String> roles = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toSet());
 
-        return new AuthResponseDto("User logged in successfully!", authentication.getName(), roles);
+        return new AuthResponseDto("User logged in successfully!", token, authentication.getName(), roles);
     }
 }
+

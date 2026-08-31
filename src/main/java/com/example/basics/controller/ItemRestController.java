@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -39,7 +40,8 @@ public class ItemRestController {
     }
 
     @PostMapping
-    @Operation(summary = "Create Inventory Item", description = "Creates a new inventory item linked to a category.")
+    @PreAuthorize("hasAnyRole('ADMIN', 'STAFF')")
+    @Operation(summary = "Create Inventory Item", description = "Creates a new inventory item linked to a category. Requires ADMIN or STAFF role.")
     @ApiResponses({
         @ApiResponse(responseCode = "201", description = "Item created successfully"),
         @ApiResponse(responseCode = "400", description = "Validation error / Duplicate SKU"),
@@ -94,7 +96,8 @@ public class ItemRestController {
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Update Inventory Item", description = "Updates an existing item's name, price, quantity, or category.")
+    @PreAuthorize("hasAnyRole('ADMIN', 'STAFF')")
+    @Operation(summary = "Update Inventory Item", description = "Updates an existing item. Requires ADMIN or STAFF role.")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Item updated successfully"),
         @ApiResponse(responseCode = "404", description = "Item or Category not found")
@@ -105,7 +108,8 @@ public class ItemRestController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete Item", description = "Deletes an inventory item by ID.")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Delete Item", description = "Deletes an inventory item by ID. Requires ADMIN role only.")
     @ApiResponses({
         @ApiResponse(responseCode = "204", description = "Item deleted successfully"),
         @ApiResponse(responseCode = "404", description = "Item not found")
