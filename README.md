@@ -22,12 +22,12 @@ A modern, enterprise-standard **Spring Boot 3 REST API** featuring **Stateless J
 
 ## 🛠️ Technology Stack
 
-- **Framework**: Spring Boot 3.3.2 (Java 17)
+- **Framework**: Spring Boot 3.5.16 (Java 25)
 - **Security**: Spring Security 6, JJWT (v0.12.6), BCrypt Password Encoder
 - **Persistence**: Spring Data JPA, Hibernate ORM
 - **Database**: H2 In-Memory DB (Development) / PostgreSQL (Production)
 - **Validation**: Jakarta Bean Validation (`spring-boot-starter-validation`)
-- **API Documentation**: SpringDoc OpenAPI 3 (`springdoc-openapi-starter-webmvc-ui` 2.6.0)
+- **API Documentation**: SpringDoc OpenAPI 3 (`springdoc-openapi-starter-webmvc-ui` 2.8.17)
 - **Build Tool**: Apache Maven
 
 ---
@@ -71,7 +71,7 @@ com.example.basics
 ## 🚀 Quick Start
 
 ### 1. Prerequisites
-- **Java 17+** (JDK)
+- **Java 25+** (JDK)
 - **Maven 3.8+** (or use `./mvnw`)
 
 ### 2. Run the Application

@@ -8,7 +8,6 @@ import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springdoc.core.properties.SwaggerUiConfigParameters;
 import org.springdoc.core.properties.SwaggerUiConfigProperties;
 import org.springdoc.core.properties.SwaggerUiOAuthProperties;
 import org.springdoc.core.providers.ObjectMapperProvider;
@@ -61,13 +60,11 @@ public class OpenApiConfig {
     public SwaggerIndexTransformer swaggerIndexTransformer(
             SwaggerUiConfigProperties swaggerUiConfigProperties,
             SwaggerUiOAuthProperties swaggerUiOAuthProperties,
-            SwaggerUiConfigParameters swaggerUiConfigParameters,
             SwaggerWelcomeCommon swaggerWelcomeCommon,
             ObjectMapperProvider objectMapperProvider) {
         return new SwaggerIndexPageTransformer(
                 swaggerUiConfigProperties,
                 swaggerUiOAuthProperties,
-                swaggerUiConfigParameters,
                 swaggerWelcomeCommon,
                 objectMapperProvider) {
             @Override
