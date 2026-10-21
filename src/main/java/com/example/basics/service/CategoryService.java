@@ -2,6 +2,7 @@ package com.example.basics.service;
 
 import com.example.basics.dto.CategoryRequestDto;
 import com.example.basics.dto.CategoryResponseDto;
+import com.example.basics.exception.DuplicateResourceException;
 import com.example.basics.exception.ResourceNotFoundException;
 import com.example.basics.model.Category;
 import com.example.basics.repository.CategoryRepository;
@@ -24,7 +25,7 @@ public class CategoryService {
     @Transactional
     public CategoryResponseDto createCategory(CategoryRequestDto dto) {
         if (categoryRepository.existsByName(dto.getName())) {
-            throw new IllegalArgumentException("Category with name '" + dto.getName() + "' already exists.");
+            throw new DuplicateResourceException("Category with name '" + dto.getName() + "' already exists.");
         }
         Category category = new Category();
         category.setName(dto.getName());

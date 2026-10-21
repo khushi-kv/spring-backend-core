@@ -37,6 +37,7 @@ public class CategoryRestController {
     @Operation(summary = "Create Category", description = "Creates a new inventory category. Requires ADMIN or STAFF role.")
     @ApiResponse(responseCode = "201", description = "Category created successfully")
     @ApiResponse(responseCode = "400", description = "Invalid request payload / Validation error")
+    @ApiResponse(responseCode = "409", description = "Category with this name already exists")
     public ResponseEntity<CategoryResponseDto> createCategory(@Valid @RequestBody CategoryRequestDto dto) {
         CategoryResponseDto createdCategory = categoryService.createCategory(dto);
         return new ResponseEntity<>(createdCategory, HttpStatus.CREATED);

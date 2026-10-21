@@ -1,5 +1,6 @@
 package com.example.basics.config;
 
+import com.example.basics.security.JwtAuthenticationEntryPoint;
 import com.example.basics.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,10 +28,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     @Autowired
-    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
+    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter,
+                          JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
     }
 
     @Bean
@@ -52,6 +56,8 @@ public class SecurityConfig {
             .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
             // Stateless session — no server-side session storage
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            // Missing / invalid / expired token -> 401 JSON error instead of an empty 403
+            .exceptionHandling(exceptions -> exceptions.authenticationEntryPoint(jwtAuthenticationEntryPoint))
             .authorizeHttpRequests(authorize -> authorize
                 // Public authentication & documentation endpoints
                 .requestMatchers("/api/v1/auth/**").permitAll()

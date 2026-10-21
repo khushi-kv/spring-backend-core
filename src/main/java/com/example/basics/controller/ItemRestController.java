@@ -42,7 +42,8 @@ public class ItemRestController {
     @PreAuthorize("hasAnyRole('ADMIN', 'STAFF')")
     @Operation(summary = "Create Inventory Item", description = "Creates a new inventory item linked to a category. Requires ADMIN or STAFF role.")
     @ApiResponse(responseCode = "201", description = "Item created successfully")
-    @ApiResponse(responseCode = "400", description = "Validation error / Duplicate SKU")
+    @ApiResponse(responseCode = "400", description = "Validation error")
+    @ApiResponse(responseCode = "409", description = "Item with this SKU already exists")
     @ApiResponse(responseCode = "404", description = "Category ID not found")
     public ResponseEntity<ItemResponseDto> createItem(@Valid @RequestBody ItemRequestDto dto) {
         ItemResponseDto createdItem = itemService.createItem(dto);

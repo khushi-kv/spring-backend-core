@@ -31,7 +31,8 @@ public class AuthRestController {
     @PostMapping("/register")
     @Operation(summary = "Register New User", description = "Registers a new user with BCrypt encrypted password and roles.")
     @ApiResponse(responseCode = "201", description = "User registered successfully")
-    @ApiResponse(responseCode = "400", description = "Validation error / Duplicate username or email")
+    @ApiResponse(responseCode = "400", description = "Validation error")
+    @ApiResponse(responseCode = "409", description = "Username or email already exists")
     public ResponseEntity<AuthResponseDto> register(@Valid @RequestBody RegisterRequestDto dto) {
         AuthResponseDto response = authService.register(dto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);

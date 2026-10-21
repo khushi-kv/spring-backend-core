@@ -3,6 +3,7 @@ package com.example.basics.service;
 import com.example.basics.dto.AuthRequestDto;
 import com.example.basics.dto.AuthResponseDto;
 import com.example.basics.dto.RegisterRequestDto;
+import com.example.basics.exception.DuplicateResourceException;
 import com.example.basics.model.Role;
 import com.example.basics.model.User;
 import com.example.basics.repository.UserRepository;
@@ -43,10 +44,10 @@ public class AuthService {
     @Transactional
     public AuthResponseDto register(RegisterRequestDto dto) {
         if (userRepository.existsByUsername(dto.getUsername())) {
-            throw new IllegalArgumentException("Username '" + dto.getUsername() + "' is already taken.");
+            throw new DuplicateResourceException("Username '" + dto.getUsername() + "' is already taken.");
         }
         if (userRepository.existsByEmail(dto.getEmail())) {
-            throw new IllegalArgumentException("Email '" + dto.getEmail() + "' is already registered.");
+            throw new DuplicateResourceException("Email '" + dto.getEmail() + "' is already registered.");
         }
 
         Set<Role> roles = new HashSet<>();

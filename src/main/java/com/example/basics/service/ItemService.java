@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.basics.dto.ItemRequestDto;
 import com.example.basics.dto.ItemResponseDto;
+import com.example.basics.exception.DuplicateResourceException;
 import com.example.basics.exception.ResourceNotFoundException;
 import com.example.basics.model.Category;
 import com.example.basics.model.Item;
@@ -29,7 +30,7 @@ public class ItemService {
     @Transactional
     public ItemResponseDto createItem(ItemRequestDto dto) {
         if (itemRepository.existsBySku(dto.getSku())) {
-            throw new IllegalArgumentException("Item with SKU '" + dto.getSku() + "' already exists.");
+            throw new DuplicateResourceException("Item with SKU '" + dto.getSku() + "' already exists.");
         }
 
         Category category = categoryRepository.findById(dto.getCategoryId())
