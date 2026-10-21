@@ -1,15 +1,15 @@
 package com.example.basics.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.example.basics.dto.StudentRequestDto;
 import com.example.basics.dto.StudentResponseDto;
 import com.example.basics.exception.ResourceNotFoundException;
 import com.example.basics.model.Student;
 import com.example.basics.repository.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @Service marks this class as a Service layer component holding business logic.
@@ -29,7 +29,7 @@ public class StudentService {
         return studentRepository.findAll()
                 .stream()
                 .map(this::mapToResponseDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public StudentResponseDto getStudentById(Long id) {

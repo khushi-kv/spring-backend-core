@@ -5,7 +5,6 @@ import com.example.basics.dto.CategoryResponseDto;
 import com.example.basics.service.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -36,10 +35,8 @@ public class CategoryRestController {
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'STAFF')")
     @Operation(summary = "Create Category", description = "Creates a new inventory category. Requires ADMIN or STAFF role.")
-    @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "Category created successfully"),
-        @ApiResponse(responseCode = "400", description = "Invalid request payload / Validation error")
-    })
+    @ApiResponse(responseCode = "201", description = "Category created successfully")
+    @ApiResponse(responseCode = "400", description = "Invalid request payload / Validation error")
     public ResponseEntity<CategoryResponseDto> createCategory(@Valid @RequestBody CategoryRequestDto dto) {
         CategoryResponseDto createdCategory = categoryService.createCategory(dto);
         return new ResponseEntity<>(createdCategory, HttpStatus.CREATED);
@@ -54,10 +51,8 @@ public class CategoryRestController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Get Category by ID", description = "Fetches category details by database ID.")
-    @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Category found"),
-        @ApiResponse(responseCode = "404", description = "Category not found")
-    })
+    @ApiResponse(responseCode = "200", description = "Category found")
+    @ApiResponse(responseCode = "404", description = "Category not found")
     public ResponseEntity<CategoryResponseDto> getCategoryById(@PathVariable Long id) {
         return ResponseEntity.ok(categoryService.getCategoryById(id));
     }

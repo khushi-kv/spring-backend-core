@@ -5,7 +5,6 @@ import com.example.basics.dto.StudentResponseDto;
 import com.example.basics.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,20 +39,16 @@ public class StudentRestController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Get Student by ID", description = "Fetches a single student entity by unique database ID.")
-    @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Student found"),
-        @ApiResponse(responseCode = "404", description = "Student not found with provided ID")
-    })
+    @ApiResponse(responseCode = "200", description = "Student found")
+    @ApiResponse(responseCode = "404", description = "Student not found with provided ID")
     public ResponseEntity<StudentResponseDto> getStudentById(@PathVariable Long id) {
         return ResponseEntity.ok(studentService.getStudentById(id));
     }
 
     @PostMapping
     @Operation(summary = "Create Student", description = "Registers a new student after validating input fields.")
-    @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "Student created successfully"),
-        @ApiResponse(responseCode = "400", description = "Invalid request payload / Validation error")
-    })
+    @ApiResponse(responseCode = "201", description = "Student created successfully")
+    @ApiResponse(responseCode = "400", description = "Invalid request payload / Validation error")
     public ResponseEntity<StudentResponseDto> addStudent(@Valid @RequestBody StudentRequestDto dto) {
         StudentResponseDto createdStudent = studentService.addStudent(dto);
         return new ResponseEntity<>(createdStudent, HttpStatus.CREATED);
@@ -61,11 +56,9 @@ public class StudentRestController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Update Student", description = "Updates an existing student by ID.")
-    @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Student updated successfully"),
-        @ApiResponse(responseCode = "404", description = "Student not found with provided ID"),
-        @ApiResponse(responseCode = "400", description = "Validation error in request body")
-    })
+    @ApiResponse(responseCode = "200", description = "Student updated successfully")
+    @ApiResponse(responseCode = "404", description = "Student not found with provided ID")
+    @ApiResponse(responseCode = "400", description = "Validation error in request body")
     public ResponseEntity<StudentResponseDto> updateStudent(@PathVariable Long id, @Valid @RequestBody StudentRequestDto dto) {
         StudentResponseDto updatedStudent = studentService.updateStudent(id, dto);
         return ResponseEntity.ok(updatedStudent);
@@ -73,10 +66,8 @@ public class StudentRestController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete Student", description = "Deletes a student record by ID.")
-    @ApiResponses({
-        @ApiResponse(responseCode = "204", description = "Student deleted successfully"),
-        @ApiResponse(responseCode = "404", description = "Student not found with provided ID")
-    })
+    @ApiResponse(responseCode = "204", description = "Student deleted successfully")
+    @ApiResponse(responseCode = "404", description = "Student not found with provided ID")
     public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
         return ResponseEntity.noContent().build();

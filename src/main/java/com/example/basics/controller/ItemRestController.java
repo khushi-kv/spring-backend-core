@@ -6,7 +6,6 @@ import com.example.basics.service.ItemService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -42,11 +41,9 @@ public class ItemRestController {
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'STAFF')")
     @Operation(summary = "Create Inventory Item", description = "Creates a new inventory item linked to a category. Requires ADMIN or STAFF role.")
-    @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "Item created successfully"),
-        @ApiResponse(responseCode = "400", description = "Validation error / Duplicate SKU"),
-        @ApiResponse(responseCode = "404", description = "Category ID not found")
-    })
+    @ApiResponse(responseCode = "201", description = "Item created successfully")
+    @ApiResponse(responseCode = "400", description = "Validation error / Duplicate SKU")
+    @ApiResponse(responseCode = "404", description = "Category ID not found")
     public ResponseEntity<ItemResponseDto> createItem(@Valid @RequestBody ItemRequestDto dto) {
         ItemResponseDto createdItem = itemService.createItem(dto);
         return new ResponseEntity<>(createdItem, HttpStatus.CREATED);
@@ -87,10 +84,8 @@ public class ItemRestController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Get Item by ID", description = "Fetches details of an item by database ID.")
-    @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Item found"),
-        @ApiResponse(responseCode = "404", description = "Item not found")
-    })
+    @ApiResponse(responseCode = "200", description = "Item found")
+    @ApiResponse(responseCode = "404", description = "Item not found")
     public ResponseEntity<ItemResponseDto> getItemById(@PathVariable Long id) {
         return ResponseEntity.ok(itemService.getItemById(id));
     }
@@ -98,10 +93,8 @@ public class ItemRestController {
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'STAFF')")
     @Operation(summary = "Update Inventory Item", description = "Updates an existing item. Requires ADMIN or STAFF role.")
-    @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Item updated successfully"),
-        @ApiResponse(responseCode = "404", description = "Item or Category not found")
-    })
+    @ApiResponse(responseCode = "200", description = "Item updated successfully")
+    @ApiResponse(responseCode = "404", description = "Item or Category not found")
     public ResponseEntity<ItemResponseDto> updateItem(@PathVariable Long id, @Valid @RequestBody ItemRequestDto dto) {
         ItemResponseDto updatedItem = itemService.updateItem(id, dto);
         return ResponseEntity.ok(updatedItem);
@@ -110,10 +103,8 @@ public class ItemRestController {
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Delete Item", description = "Deletes an inventory item by ID. Requires ADMIN role only.")
-    @ApiResponses({
-        @ApiResponse(responseCode = "204", description = "Item deleted successfully"),
-        @ApiResponse(responseCode = "404", description = "Item not found")
-    })
+    @ApiResponse(responseCode = "204", description = "Item deleted successfully")
+    @ApiResponse(responseCode = "404", description = "Item not found")
     public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
         itemService.deleteItem(id);
         return ResponseEntity.noContent().build();
