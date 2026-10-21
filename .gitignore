@@ -27,3 +27,6 @@ target/
 # OS specific files
 .DS_Store
 Thumbs.db
+
+# Local-only secrets (see .env.example)
+.env

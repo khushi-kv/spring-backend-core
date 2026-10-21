@@ -1,13 +1,7 @@
 package com.example.basics.config;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
-import io.swagger.v3.oas.models.Components;
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Contact;
-import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.info.License;
-import io.swagger.v3.oas.models.security.SecurityRequirement;
-import io.swagger.v3.oas.models.security.SecurityScheme;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springdoc.core.properties.SwaggerUiConfigProperties;
 import org.springdoc.core.properties.SwaggerUiOAuthProperties;
 import org.springdoc.core.providers.ObjectMapperProvider;
@@ -20,8 +14,14 @@ import org.springframework.core.io.Resource;
 import org.springframework.web.servlet.resource.ResourceTransformerChain;
 import org.springframework.web.servlet.resource.TransformedResource;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * Configuration class for OpenAPI 3 / Swagger UI documentation.
@@ -69,7 +69,7 @@ public class OpenApiConfig {
                 objectMapperProvider) {
             @Override
             public Resource transform(HttpServletRequest request, Resource resource, ResourceTransformerChain transformerChain) throws IOException {
-                if (resource.getFilename() != null && resource.getFilename().equals("index.html")) {
+                if (resource != null && "index.html".equals(resource.getFilename())) {
                     String html = new String(resource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
                     String customHeadTags = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/custom-swagger/swagger-theme.css\" />" +
                                             "<script src=\"/custom-swagger/theme-toggle.js\"></script>";

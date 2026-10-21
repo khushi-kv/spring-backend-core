@@ -46,7 +46,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(AbstractHttpConfigurer::disable)
+            // CSRF protection is unnecessary here: the API is stateless and authenticates only via the
+            // "Authorization: Bearer" header (no session or auth cookies a browser could send implicitly)
+            .csrf(AbstractHttpConfigurer::disable) // NOSONAR java:S4502
             .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
             // Stateless session — no server-side session storage
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

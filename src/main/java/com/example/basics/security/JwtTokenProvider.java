@@ -16,7 +16,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
-import java.util.Date;
+import java.time.Instant;
 import java.util.stream.Collectors;
 
 /**
@@ -42,6 +42,7 @@ public class JwtTokenProvider {
      * @param authentication the authenticated principal from Spring Security
      * @return a compact, URL-safe JWT string
      */
+    @SuppressWarnings("java:S2143") // io.jsonwebtoken builder strictly requires java.util.Date
     public String generateToken(Authentication authentication) {
         String username = authentication.getName();
 
@@ -49,14 +50,14 @@ public class JwtTokenProvider {
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
 
-        Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + jwtExpirationMs);
+        Instant now = Instant.now();
+        Instant expiryDate = now.plusMillis(jwtExpirationMs);
 
         return Jwts.builder()
                 .subject(username)
                 .claim("roles", roles)
-                .issuedAt(now)
-                .expiration(expiryDate)
+                .issuedAt(java.util.Date.from(now))
+                .expiration(java.util.Date.from(expiryDate))
                 .signWith(getSigningKey())
                 .compact();
     }

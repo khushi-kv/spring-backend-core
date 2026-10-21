@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleResourceNotFound(ResourceNotFoundException ex) {
         ErrorResponse errorResponse = new ErrorResponse(
-                LocalDateTime.now(),
+                LocalDateTime.now(ZoneId.systemDefault()),
                 HttpStatus.NOT_FOUND.value(),
                 "Not Found",
                 ex.getMessage(),
@@ -38,7 +39,7 @@ public class GlobalExceptionHandler {
         );
 
         ErrorResponse errorResponse = new ErrorResponse(
-                LocalDateTime.now(),
+                LocalDateTime.now(ZoneId.systemDefault()),
                 HttpStatus.BAD_REQUEST.value(),
                 "Bad Request - Validation Failed",
                 "Input validation failed for one or more fields",
@@ -51,7 +52,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(org.springframework.security.access.AccessDeniedException.class)
     public ResponseEntity<ErrorResponse> handleAccessDenied(org.springframework.security.access.AccessDeniedException ex) {
         ErrorResponse errorResponse = new ErrorResponse(
-                LocalDateTime.now(),
+                LocalDateTime.now(ZoneId.systemDefault()),
                 HttpStatus.FORBIDDEN.value(),
                 "Forbidden - Access Denied",
                 "You do not have the required permissions to perform this operation.",
@@ -64,7 +65,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneralException(Exception ex) {
         ErrorResponse errorResponse = new ErrorResponse(
-                LocalDateTime.now(),
+                LocalDateTime.now(ZoneId.systemDefault()),
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 "Internal Server Error",
                 ex.getMessage(),

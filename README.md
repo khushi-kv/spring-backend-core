@@ -87,12 +87,33 @@ Navigate to **[http://localhost:8080/swagger-ui.html](http://localhost:8080/swag
 
 ## 👥 Default Demo Credentials (Pre-Seeded)
 
-On application startup, `DataSeeder.java` and `data.sql` automatically seed the following test accounts:
+On application startup in the `dev` profile, `DataSeeder.java` seeds the following test accounts. No credentials are stored in source control; an account is skipped (with a warning) if its password is not configured. Provide the passwords in one of two ways:
+
+**Option 1 (recommended): `.env` file.** Copy `.env.example` to `.env` in the project root and fill in the values. `.env` is git-ignored and loaded automatically in the `dev` profile:
+
+```properties
+# Required: Base64-encoded JWT signing key (at least 256 bits), e.g. output of `openssl rand -base64 64`
+JWT_SECRET=<your-base64-key>
+SEED_ADMIN_PASSWORD=<choose-a-password>
+SEED_STAFF_PASSWORD=<choose-a-password>
+```
+
+> `JWT_SECRET` has no default. Without it the application will not start.
+
+**Option 2: environment variables.**
+
+```powershell
+$env:JWT_SECRET = "<your-base64-key>"
+$env:SEED_ADMIN_PASSWORD = "<choose-a-password>"
+$env:SEED_STAFF_PASSWORD = "<choose-a-password>"
+```
+
+> If both are set, real environment variables take precedence over values in `.env`.
 
 | Username | Password | Role | Permissions |
 | :--- | :--- | :--- | :--- |
-| **`admin`** | `admin123` | `ROLE_ADMIN` | Full Read, Write, and **Delete** access |
-| **`staff`** | `staff123` | `ROLE_STAFF` | Read, Create, and Update access (No Delete) |
+| **`admin`** | *(your configured admin password)* | `ROLE_ADMIN` | Full Read, Write, and **Delete** access |
+| **`staff`** | *(your configured staff password)* | `ROLE_STAFF` | Read, Create, and Update access (No Delete) |
 | *New Registrations* | *(custom)* | `ROLE_USER` | Read-only catalog access |
 
 ---
@@ -130,7 +151,7 @@ On application startup, `DataSeeder.java` and `data.sql` automatically seed the 
 ```bash
 curl -X POST "http://localhost:8080/api/v1/auth/login" \
   -H "Content-Type: application/json" \
-  -d '{"usernameOrEmail": "admin", "password": "admin123"}'
+  -d '{"usernameOrEmail": "admin", "password": "<your-admin-password>"}'
 ```
 
 ### 2. Access Protected Endpoint with Bearer Token

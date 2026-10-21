@@ -19,6 +19,12 @@
     
     <properties>
         <java.version>25</java.version>
+
+        <!-- SonarQube (token is supplied via ~/.m2/settings.xml or SONAR_TOKEN, never committed) -->
+        <sonar.projectKey>Crud</sonar.projectKey>
+        <sonar.projectName>Crud</sonar.projectName>
+        <sonar.host.url>http://localhost:9001</sonar.host.url>
+        <sonar.exclusions>.vscode/**,.idea/**</sonar.exclusions>
     </properties>
     
     <dependencies>
@@ -99,6 +105,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>5.8.0.7211</version>
             </plugin>
         </plugins>
     </build>
