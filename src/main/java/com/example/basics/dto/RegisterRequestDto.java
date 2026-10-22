@@ -4,8 +4,6 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-import java.util.Set;
-
 public class RegisterRequestDto {
 
     @NotBlank(message = "Username is required")
@@ -20,16 +18,13 @@ public class RegisterRequestDto {
     @Size(min = 6, max = 100, message = "Password must be at least 6 characters long")
     private String password;
 
-    private Set<String> roles;
-
     public RegisterRequestDto() {
     }
 
-    public RegisterRequestDto(String username, String email, String password, Set<String> roles) {
+    public RegisterRequestDto(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.roles = roles;
     }
 
     public String getUsername() {
@@ -54,13 +49,5 @@ public class RegisterRequestDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Set<String> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<String> roles) {
-        this.roles = roles;
     }
 }

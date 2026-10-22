@@ -25,6 +25,8 @@
         <sonar.projectName>Crud</sonar.projectName>
         <sonar.host.url>http://localhost:9001</sonar.host.url>
         <sonar.exclusions>.vscode/**,.idea/**</sonar.exclusions>
+        <!-- Plain data holders (getters/setters only) and the bootstrap class are not counted toward coverage -->
+        <sonar.coverage.exclusions>**/dto/**,**/model/**,**/SpringBootBasicsApplication.java</sonar.coverage.exclusions>
     </properties>
     
     <dependencies>
@@ -80,6 +82,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Spring Security Test: @WithMockUser and security-aware MockMvc support -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
         <!-- JJWT: Industry-standard JSON Web Token library for stateless authentication -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
@@ -105,6 +114,27 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- JaCoCo: records which lines the tests execute and writes target/site/jacoco/jacoco.xml for SonarQube -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.14</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
