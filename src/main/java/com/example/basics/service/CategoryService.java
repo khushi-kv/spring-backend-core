@@ -6,7 +6,6 @@ import com.example.basics.exception.DuplicateResourceException;
 import com.example.basics.exception.ResourceNotFoundException;
 import com.example.basics.model.Category;
 import com.example.basics.repository.CategoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +16,6 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
 
-    @Autowired
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }

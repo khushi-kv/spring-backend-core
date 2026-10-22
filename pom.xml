@@ -24,7 +24,6 @@
         <sonar.projectKey>Crud</sonar.projectKey>
         <sonar.projectName>Crud</sonar.projectName>
         <sonar.host.url>http://localhost:9001</sonar.host.url>
-        <sonar.exclusions>.vscode/**,.idea/**</sonar.exclusions>
         <!-- Plain data holders (getters/setters only) and the bootstrap class are not counted toward coverage -->
         <sonar.coverage.exclusions>**/dto/**,**/model/**,**/SpringBootBasicsApplication.java</sonar.coverage.exclusions>
     </properties>

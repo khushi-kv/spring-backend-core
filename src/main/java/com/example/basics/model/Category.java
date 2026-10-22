@@ -77,9 +77,4 @@ public class Category {
         items.add(item);
         item.setCategory(this);
     }
-
-    public void removeItem(Item item) {
-        items.remove(item);
-        item.setCategory(null);
-    }
 }
